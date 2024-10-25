@@ -17,7 +17,21 @@ function validatePrice() {
     }
 }
 
+function validateDiscountPercentage() {
+    const discountPercentage = Number(document.getElementById('discountInput').value);
+
+    if (discountPercentage < 0 || discountPercentage > 100 || !Number.isInteger(discountPercentage)) {
+        document.getElementById('errorMessage').innerHTML = 'Geen geldig kortingspercentage. Vul een getal in tussen de 0 en 100.';
+        console.log('Discount percentage not valid: not between 0 and 100');
+        return false;
+    } else {
+        document.getElementById('errorMessage').innerHTML = '';
+        console.log('Discount percentage valid');
+        return true;
+    }
+}
 
 function calculateDiscount() {
-    validatePrice();
+    // validatePrice();
+    validateDiscountPercentage();
 }
