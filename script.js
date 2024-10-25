@@ -31,7 +31,22 @@ function validateDiscountPercentage() {
     }
 }
 
+function validateQuantity() {
+    const quantity = Number(document.getElementById('quantityInput').value);
+    if (!Number.isInteger(quantity)) {
+        document.getElementById('errorMessage').innerHTML = 'Ongeldig aantal';
+        console.log('Quantity not valid');
+        return false;
+    } else {
+        document.getElementById('errorMessage').innerHTML = '';
+        console.log('Quantity valid');
+        return false;
+    }
+}
+
+
 function calculateDiscount() {
-    // validatePrice();
+    validatePrice();
     validateDiscountPercentage();
+    validateQuantity();
 }
