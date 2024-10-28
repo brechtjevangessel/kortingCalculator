@@ -1,10 +1,5 @@
-let price = 0;
-let discountPercentage = 0;
-let quantity = 0;
-
-function validatePrice() {
+function validatePrice(price) {
     const userInput = document.querySelector('.priceInput').value;
-    price = document.querySelector('.priceInput').value * 100;
 
     if (userInput.includes(",")) {
         document.querySelector('.priceError').innerHTML = 'Gebruik Engelse notering, dus: een punt (.) i.p.v. een comma (,)';
@@ -21,8 +16,7 @@ function validatePrice() {
     }
 }
 
-function validateDiscountPercentage() {
-    discountPercentage = Number(document.querySelector('.discountInput').value);
+function validateDiscountPercentage(discountPercentage) {
 
     if (discountPercentage < 0 || discountPercentage > 100 || !Number.isInteger(discountPercentage)) {
         document.querySelector('.discountPercentageError').innerHTML = 'Geen geldig kortingspercentage. Vul een heel getal in tussen de 0 en 100.';
@@ -35,9 +29,9 @@ function validateDiscountPercentage() {
     }
 }
 
-function validateQuantity() {
+function validateQuantity(quantity) {
     const userInput = document.querySelector('.quantityInput').value;
-    quantity = Number(document.querySelector('.quantityInput').value);
+
     if (!Number.isInteger(quantity) || userInput.includes(",") || quantity <= 0) {
         document.querySelector('.quantityError').innerHTML = 'Ongeldig aantal: gebruik een positief heel getal';
         console.log('Quantity not valid');
@@ -50,8 +44,12 @@ function validateQuantity() {
 }
 
 function calculateDiscount() {
+    const price = document.querySelector('.priceInput').value * 100;
+    const discountPercentage = Number(document.querySelector('.discountInput').value);
+    const quantity = Number(document.querySelector('.quantityInput').value);
 
-    if (!validatePrice() || !validateDiscountPercentage() || !validateQuantity()) {
+
+    if (!validatePrice(price) || !validateDiscountPercentage(discountPercentage) || !validateQuantity(quantity)) {
         document.querySelector('.calculationMessage').innerHTML= `Je betaalt ${discountedPriceTotalOutput} euro (${ discountedPricePerItemOutput} euro per stuk). \n Je bespaart ${moneySavedOutput} euro.`;
     }
 
