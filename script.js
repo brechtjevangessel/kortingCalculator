@@ -51,9 +51,20 @@ function calculateDiscount(button) {
     const discountPercentage = Number(container.querySelector('.discountInput').value);
     const quantity = Number(container.querySelector('.quantityInput').value);
 
+    let inputIsValid = true;
 
-    if (!validatePrice(price, container) || !validateDiscountPercentage(discountPercentage, container) || !validateQuantity(quantity, container)) {
-        container.querySelector('.calculationMessage').innerHTML= `Je betaalt ${discountedPriceTotalOutput} euro (${ discountedPricePerItemOutput} euro per stuk). \n Je bespaart ${moneySavedOutput} euro.`;
+    if (!validatePrice(price, container)) {
+        inputIsValid = false;
+    }
+    if (!validateDiscountPercentage(discountPercentage, container)) {
+        inputIsValid = false;
+    }
+    if (!validateQuantity(quantity, container)) {
+        inputIsValid = false;
+    }
+
+    if (!inputIsValid) {
+        return;
     }
 
     // all prices are in cents, unless variable name ends in "output"
