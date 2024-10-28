@@ -88,4 +88,14 @@ function calculateDiscount(button) {
         Je bespaart: €${moneySavedOutput}`;
 }
 
+function changeDiscountInput(selector) {
+    const container = selector.closest('.calculatorContainer');
+
+
+    discountType = container.querySelector('.discountInput').value;
+    console.log(discountType);
+
+    
+}
+
 

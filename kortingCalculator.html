@@ -13,6 +13,11 @@
         <label for="price">Prijs:</label>
         <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
         <div class="priceError"></div>
+        <label for="discountType">Type korting:</label>
+        <select class="discountInput" name="discountType" onchange="changeDiscountInput(this)">
+          <option value="percentage">Percentage (%)</option>
+          <option value="1plus1free">... + ... gratis</option>
+        </select>
         <label for="discountPercentage">Kortingspercentage:</label>
         <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
         <div class="discountPercentageError"></div>
