@@ -8,36 +8,37 @@
 </head>
 <body>
   <h3>Korting Calculator</h3>
-    <div>
-    <div class="calculatorContainer">
-      <label for="price">Prijs:</label>
-      <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
-      <label for="discountPercentage">Kortingspercentage:</label>
-      <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
-      <label for="quantity">Aantal:</label>
-      <input type="number" class="quantityInput" name="quantity" value="1">
-      <div class="priceError"></div>
-      <div class="discountPercentageError"></div>
-      <div class="quantityError"></div>
-      <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
-      <div class="calculationMessage"></div>
-  </div>
+    <div class="mainContainer">
+      <div class="calculatorContainer">
+        <label for="price">Prijs:</label>
+        <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
+        <div class="priceError"></div>
+        <label for="discountPercentage">Kortingspercentage:</label>
+        <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
+        <div class="discountPercentageError"></div>
+        <label for="quantity">Aantal:</label>
+        <input type="number" class="quantityInput" name="quantity" value="1">
+        <div class="quantityError"></div>
+        <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
+        <div class="calculationMessage"></div>
+      </div>
 
-  <div class="calculatorContainer">
-    <label for="price">Prijs:</label>
-    <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
-    <label for="discountPercentage">Kortingspercentage:</label>
-    <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
-    <label for="quantity">Aantal:</label>
-    <input type="number" class="quantityInput" name="quantity" value="1">
-    <div class="priceError"></div>
-    <div class="discountPercentageError"></div>
-    <div class="quantityError"></div>
-    <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
-    <div class="calculationMessage"></div>
-  </div>
-  
-</div>
+      <div class="mainContainer">
+        <div class="calculatorContainer">
+          <label for="price">Prijs:</label>
+          <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
+          <div class="priceError"></div>
+          <label for="discountPercentage">Kortingspercentage:</label>
+          <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
+          <div class="discountPercentageError"></div>
+          <label for="quantity">Aantal:</label>
+          <input type="number" class="quantityInput" name="quantity" value="1">
+          <div class="quantityError"></div>
+          <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
+          <div class="calculationMessage"></div>
+        </div>
+
+    </div>
 
 </body>
 

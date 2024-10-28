@@ -1,0 +1,20 @@
+.mainContainer {
+  display: flex;
+}
+
+.calculatorContainer {
+  border: 1px black;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  border-width: 1px;
+  margin: 10px;
+  padding: 10px;
+  height: 400px;
+}
+
+.priceError, .discountPercentageError, .quantityError {
+  height: 40px;
+  color: red;
+}
