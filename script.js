@@ -3,47 +3,47 @@ let discountPercentage = 0;
 let quantity = 0;
 
 function validatePrice() {
-    const userInput = document.getElementById('priceInput').value;
-    price = document.getElementById('priceInput').value * 100;
+    const userInput = document.querySelector('.priceInput').value;
+    price = document.querySelector('.priceInput').value * 100;
 
     if (userInput.includes(",")) {
-        document.getElementById('priceError').innerHTML = 'Gebruik Engelse notering, dus: een punt (.) i.p.v. een comma (,)';
+        document.querySelector('.priceError').innerHTML = 'Gebruik Engelse notering, dus: een punt (.) i.p.v. een comma (,)';
         console.log('Price not valid: comma notation')
         return false;
     } else if (price <= 0 || !Number.isInteger(price)) {
         console.log('Price not valid');
-        document.getElementById('priceError').innerHTML = 'Ongeldige prijs';
+        document.querySelector('.priceError').innerHTML = 'Ongeldige prijs';
         return false;
     } else {
-        document.getElementById('priceError').innerHTML = '';
+        document.querySelector('.priceError').innerHTML = '';
         console.log('Price valid');
         return true;
     }
 }
 
 function validateDiscountPercentage() {
-    discountPercentage = Number(document.getElementById('discountInput').value);
+    discountPercentage = Number(document.querySelector('.discountInput').value);
 
     if (discountPercentage < 0 || discountPercentage > 100 || !Number.isInteger(discountPercentage)) {
-        document.getElementById('discountPercentageError').innerHTML = 'Geen geldig kortingspercentage. Vul een heel getal in tussen de 0 en 100.';
+        document.querySelector('.discountPercentageError').innerHTML = 'Geen geldig kortingspercentage. Vul een heel getal in tussen de 0 en 100.';
         console.log('Discount percentage not valid: not between 0 and 100');
         return false;
     } else {
-        document.getElementById('discountPercentageError').innerHTML = '';
+        document.querySelector('.discountPercentageError').innerHTML = '';
         console.log('Discount percentage valid');
         return true;
     }
 }
 
 function validateQuantity() {
-    const userInput = document.getElementById('quantityInput').value;
-    quantity = Number(document.getElementById('quantityInput').value);
+    const userInput = document.querySelector('.quantityInput').value;
+    quantity = Number(document.querySelector('.quantityInput').value);
     if (!Number.isInteger(quantity) || userInput.includes(",") || quantity <= 0) {
-        document.getElementById('quantityError').innerHTML = 'Ongeldig aantal: gebruik een positief heel getal';
+        document.querySelector('.quantityError').innerHTML = 'Ongeldig aantal: gebruik een positief heel getal';
         console.log('Quantity not valid');
         return false;
     } else {
-        document.getElementById('quantityError').innerHTML = '';
+        document.querySelector('.quantityError').innerHTML = '';
         console.log('Quantity valid');
         return true;
     }
@@ -52,7 +52,7 @@ function validateQuantity() {
 function calculateDiscount() {
 
     if (!validatePrice() || !validateDiscountPercentage() || !validateQuantity()) {
-        document.getElementById('calculationMessage').innerHTML= `Je betaalt ${discountedPriceTotalOutput} euro (${ discountedPricePerItemOutput} euro per stuk). \n Je bespaart ${moneySavedOutput} euro.`;
+        document.querySelector('.calculationMessage').innerHTML= `Je betaalt ${discountedPriceTotalOutput} euro (${ discountedPricePerItemOutput} euro per stuk). \n Je bespaart ${moneySavedOutput} euro.`;
     }
 
     // all prices are in cents, unless variable name ends in "output"
@@ -70,7 +70,7 @@ function calculateDiscount() {
     const discountedPricePerItemOutput = (discountedPricePerItem / 100).toFixed(2);
     const priceOutput = (price / 100).toFixed(2);
 
-    document.getElementById('calculationMessage').innerHTML= `
+    document.querySelector('.calculationMessage').innerHTML= `
         Totale prijs: <s>€${oldPriceTotalOutput}</s> €${discountedPriceTotalOutput} <br> 
         Prijs per stuk: <s>€${priceOutput}</s> €${discountedPricePerItemOutput} <br><br>
         Je bespaart: €${moneySavedOutput}`;

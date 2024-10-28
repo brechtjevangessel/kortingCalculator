@@ -9,16 +9,16 @@
 <body>
   <h3>Korting Calculator</h3>
   <label for="price">Prijs:</label>
-  <input type="text" id="priceInput" name="price" placeholder="bijv. 5.95">
+  <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
   <label for="discountPercentage">Kortingspercentage:</label>
-  <input type="text" id="discountInput" name="discountPercentage" placeholder="bijv. 50">
+  <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
   <label for="quantity">Aantal:</label>
-  <input type="number" id="quantityInput" name="quantity" value="1">
-  <div id="priceError"></div>
-  <div id="discountPercentageError"></div>
-  <div id="quantityError"></div>
-  <button id="calculationButton" onclick="calculateDiscount()">Reken uit!</button>
-  <div id="calculationMessage"></div>
+  <input type="number" class="quantityInput" name="quantity" value="1">
+  <div class="priceError"></div>
+  <div class="discountPercentageError"></div>
+  <div class="quantityError"></div>
+  <button class="calculationButton" onclick="calculateDiscount()">Reken uit!</button>
+  <div class="calculationMessage"></div>
 </body>
 
   <script src="script.js"></script>
