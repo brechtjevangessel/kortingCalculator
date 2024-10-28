@@ -57,17 +57,23 @@ function calculateDiscount() {
 
     // all prices are in cents, unless variable name ends in "output"
     const oldPriceTotal = price * quantity;
-    const discountedPriceTotal = oldPriceTotal * discountPercentage / 100;
-    const discountedPricePerItem = price * discountPercentage / 100;
-    const moneySaved = oldPriceTotal - discountedPriceTotal;
+    const moneySaved = oldPriceTotal * discountPercentage / 100;
+    const discountedPriceTotal = oldPriceTotal - moneySaved;
+    const discountedPricePerItem = discountedPriceTotal / quantity;
 
     //output variables
-    const discountedPriceTotalOutput = discountedPriceTotal / 100;
-    const discountedPricePerItemOutput = discountedPricePerItem / 100;
-    const moneySavedOutput = oldPriceTotal / 100;
 
 
-    document.getElementById('calculationMessage').innerHTML= `Je betaalt ${discountedPriceTotalOutput} euro (${ discountedPricePerItemOutput} euro per stuk). \n Je bespaart ${moneySavedOutput} euro.`;
+    const oldPriceTotalOutput = (oldPriceTotal / 100).toFixed(2);
+    const moneySavedOutput = (moneySaved / 100).toFixed(2);
+    const discountedPriceTotalOutput = (discountedPriceTotal / 100).toFixed(2);
+    const discountedPricePerItemOutput = (discountedPricePerItem / 100).toFixed(2);
+    const priceOutput = (price / 100).toFixed(2);
+
+    document.getElementById('calculationMessage').innerHTML= `
+        Totale prijs: <s>€${oldPriceTotalOutput}</s> €${discountedPriceTotalOutput} <br> 
+        Prijs per stuk: <s>€${priceOutput}</s> €${discountedPricePerItemOutput} <br><br>
+        Je bespaart: €${moneySavedOutput}`;
 }
 
 
