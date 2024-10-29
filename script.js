@@ -18,8 +18,8 @@ function validatePrice(price, container) {
 
 function validateDiscountPercentage(discountPercentage, container) {
 
-    if (discountPercentage < 0 || discountPercentage > 100 || !Number.isInteger(discountPercentage)) {
-        container.querySelector('.discountPercentageError').innerHTML = 'Geen geldig kortingspercentage. Vul een heel getal in tussen de 0 en 100.';
+    if (discountPercentage < 0 || discountPercentage > 100) {
+        container.querySelector('.discountPercentageError').innerHTML = 'Geen geldig kortingspercentage.';
         console.log('Discount percentage not valid: not between 0 and 100');
         return false;
     } else {
@@ -48,8 +48,14 @@ function calculateDiscount(button) {
     const container = button.closest('.calculatorContainer');
 
     const price = container.querySelector('.priceInput').value * 100;
-    const discountPercentage = Number(container.querySelector('.discountInput').value);
     const quantity = Number(container.querySelector('.quantityInput').value);
+    let discountPercentage = 0;
+    const discountType = container.querySelector('.discountType').value;
+
+    if (discountType === '1plus1free') {
+        discountPercentage = calculateOnePlusOneDiscountPercentage(quantity, container);
+    }
+
 
     let inputIsValid = true;
 
@@ -66,6 +72,8 @@ function calculateDiscount(button) {
     if (!inputIsValid) {
         return;
     }
+
+
 
     // all prices are in cents, unless variable name ends in "output"
     const oldPriceTotal = price * quantity;
@@ -101,18 +109,32 @@ function changeDiscountInput(selector) {
         <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50"></input>
         `;
     } else if (discountType === '1plus1free') {
-        document.querySelector('.discountContainer').classList.add('onePlusone');
         container.querySelector('.discountContainer').innerHTML = `
+        <div class="onePlusOne">
             <input type="number" class="onePlusOnePayedItem"> 
             <div>+</div> 
             <input type="number" class="onePlusOneFreeItem">
             <div>gratis<div>
+        <div>
         `;
     }
-    
-
-    
     
 }
 
 
+function calculateOnePlusOneDiscountPercentage(quantity, container) {
+    const fullPriceItems = Number(container.querySelector('.onePlusOnePayedItem').value);
+    const freeItems = Number(container.querySelector('.onePlusOneFreeItem').value);
+
+    const optimalAmount = fullPriceItems + freeItems;
+    const restAmount = quantity % optimalAmount;
+
+    let actualFreeItems = 0;
+    if (quantity < optimalAmount) {
+        if (quantity > fullPriceItems) {
+            actualFreeItems = quantity - fullPriceItems;
+        }
+        actualFreeItems = ((quantity - restAmount) / (optimalAmount)) * freeItems;
+      }
+    return (actualFreeItems / quantity * 100);
+}

@@ -23,8 +23,15 @@ input {
   color: red;
 }
 
+.discountContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .onePlusOne {
   display: flex;
+  align-items: baseline;
+
 }
 
 .onePlusOneFreeItem, .onePlusOnePayedItem {
