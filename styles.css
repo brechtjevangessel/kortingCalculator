@@ -2,6 +2,10 @@
   display: flex;
 }
 
+input {
+  margin-top: 5px;
+}
+
 .calculatorContainer {
   border: 1px black;
   width: 300px;
@@ -17,4 +21,12 @@
 .priceError, .discountPercentageError, .quantityError {
   height: 40px;
   color: red;
+}
+
+.onePlusOne {
+  display: flex;
+}
+
+.onePlusOneFreeItem, .onePlusOnePayedItem {
+  width: 50px;
 }

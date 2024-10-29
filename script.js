@@ -101,7 +101,13 @@ function changeDiscountInput(selector) {
         <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50"></input>
         `;
     } else if (discountType === '1plus1free') {
-        container.querySelector('.discountContainer').innerHTML = 'test';
+        document.querySelector('.discountContainer').classList.add('onePlusone');
+        container.querySelector('.discountContainer').innerHTML = `
+            <input type="number" class="onePlusOnePayedItem"> 
+            <div>+</div> 
+            <input type="number" class="onePlusOneFreeItem">
+            <div>gratis<div>
+        `;
     }
     
 
