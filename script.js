@@ -91,10 +91,21 @@ function calculateDiscount(button) {
 function changeDiscountInput(selector) {
     const container = selector.closest('.calculatorContainer');
 
+    const discountType = container.querySelector('.discountType').value;
 
-    discountType = container.querySelector('.discountInput').value;
     console.log(discountType);
 
+    if (discountType === 'percentage') {
+        container.querySelector('.discountContainer').innerHTML = `
+        <label for="discountPercentage">Kortingspercentage:</label>
+        <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50"></input>
+        `;
+    } else if (discountType === '1plus1free') {
+        container.querySelector('.discountContainer').innerHTML = 'test';
+    }
+    
+
+    
     
 }
 

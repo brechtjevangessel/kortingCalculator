@@ -14,12 +14,14 @@
         <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
         <div class="priceError"></div>
         <label for="discountType">Type korting:</label>
-        <select class="discountInput" name="discountType" onchange="changeDiscountInput(this)">
+        <select class="discountType" name="discountType" onchange="changeDiscountInput(this)">
           <option value="percentage">Percentage (%)</option>
           <option value="1plus1free">... + ... gratis</option>
         </select>
-        <label for="discountPercentage">Kortingspercentage:</label>
-        <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
+        <div class="discountContainer">
+          <label for="discountPercentage">Kortingspercentage:</label>
+          <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
+        </div>
         <div class="discountPercentageError"></div>
         <label for="quantity">Aantal:</label>
         <input type="number" class="quantityInput" name="quantity" value="1">
@@ -27,21 +29,6 @@
         <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
         <div class="calculationMessage"></div>
       </div>
-
-      <div class="mainContainer">
-        <div class="calculatorContainer">
-          <label for="price">Prijs:</label>
-          <input type="text" class="priceInput" name="price" placeholder="bijv. 5.95">
-          <div class="priceError"></div>
-          <label for="discountPercentage">Kortingspercentage:</label>
-          <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50">
-          <div class="discountPercentageError"></div>
-          <label for="quantity">Aantal:</label>
-          <input type="number" class="quantityInput" name="quantity" value="1">
-          <div class="quantityError"></div>
-          <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
-          <div class="calculationMessage"></div>
-        </div>
 
     </div>
 
