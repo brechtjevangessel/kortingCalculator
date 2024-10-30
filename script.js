@@ -134,6 +134,7 @@ function calculateOnePlusOneDiscountPercentage(quantity, container) {
         if (quantity > fullPriceItems) {
             actualFreeItems = quantity - fullPriceItems;
         }
+      } else {
         actualFreeItems = ((quantity - restAmount) / (optimalAmount)) * freeItems;
       }
     return (actualFreeItems / quantity * 100);
