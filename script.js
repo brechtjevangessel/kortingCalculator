@@ -2,8 +2,8 @@ function validatePrice(price, container) {
     const userInput = container.querySelector('.priceInput').value;
 
     if (userInput.includes(",")) {
-        container.querySelector('.priceError').innerHTML = 'Gebruik Engelse notering, dus: een punt (.) i.p.v. een comma (,)';
-        console.log('Price not valid: comma notation')
+        container.querySelector('.priceError').innerHTML = 'Vervang "." door ","';
+        console.log('Price not valid: comma notation');
         return false;
     } else if (price <= 0 || !Number.isInteger(price)) {
         console.log('Price not valid');
@@ -105,15 +105,14 @@ function changeDiscountInput(selector) {
 
     if (discountType === 'percentage') {
         container.querySelector('.discountContainer').innerHTML = `
-        <label for="discountPercentage">Kortingspercentage:</label>
         <input type="text" class="discountInput" name="discountPercentage" placeholder="bijv. 50"></input>
         `;
     } else if (discountType === '1plus1free') {
         container.querySelector('.discountContainer').innerHTML = `
         <div class="onePlusOne">
-            <input type="number" class="onePlusOnePayedItem"> 
+            <input type="number" class="onePlusOnePayedItem" value="1"> 
             <div>+</div> 
-            <input type="number" class="onePlusOneFreeItem">
+            <input type="number" class="onePlusOneFreeItem" value="1">
             <div>gratis<div>
         <div>
         `;
