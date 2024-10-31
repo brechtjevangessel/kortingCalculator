@@ -16,22 +16,46 @@ function validatePrice(price, container) {
     }
 }
 
-function validateDiscountPercentage(discountPercentage, container) {
+function validateDiscountPercentage(discountPercentage, discountType, container) {
 
-    if (discountPercentage < 0 || discountPercentage > 100) {
-        container.querySelector('.discountPercentageError').innerHTML = 'Geen geldig kortingspercentage.';
-        console.log('Discount percentage not valid: not between 0 and 100');
-        return false;
-    } else {
-        container.querySelector('.discountPercentageError').innerHTML = '';
-        console.log('Discount percentage valid');
-        return true;
+
+    if (discountType === 'percentage') {
+        if (discountPercentage < 0) {
+            container.querySelector('.discountPercentageError').innerHTML = 'Vul positief getal in.';
+            console.log('Discount percentage not valid: negative number');
+            return false;
+        } else if (discountPercentage > 100) {
+            container.querySelector('.discountPercentageError').innerHTML = 'Kortingspercentage kan niet hoger zijn dan 100%';
+            console.log('Discount percentage not valid: >100');
+            return false;
+        } else {
+            container.querySelector('.discountPercentageError').innerHTML = '';
+            console.log('Discount percentage valid');
+            return true;
+        }
+    } else if (discountType === '1plus1free') {
+        const freeItem = Number(container.querySelector('.onePlusOneFreeItem').value);
+        const payedItem = Number(container.querySelector('.onePlusOnePayedItem').value);
+        if (freeItem <= 0 || payedItem <= 0) {
+            container.querySelector('.discountPercentageError').innerHTML = 'Vul positief getal in.';
+            console.log('Discount percentage not valid: negative number');
+            return false;
+        } else if (!isInteger(freeItem) || !isInteger(payedItem)) {
+            container.querySelector('.discountPercentageError').innerHTML = 'Vul een heel getal in.';
+            console.log('Discount percentage not valid: not integer');
+            return false;
+        } else {
+            container.querySelector('.discountPercentageError').innerHTML = '';
+            console.log('Discount percentage valid');
+            return true;
+        }
     }
+    
+    
 }
 
 function validateQuantity(quantity, container) {
     const userInput = container.querySelector('.quantityInput').value;
-
     if (!Number.isInteger(quantity) || userInput.includes(",") || quantity <= 0) {
         container.querySelector('.quantityError').innerHTML = 'Ongeldig aantal: gebruik een positief heel getal';
         console.log('Quantity not valid');
@@ -54,7 +78,9 @@ function calculateDiscount(button) {
 
     if (discountType === '1plus1free') {
         discountPercentage = calculateOnePlusOneDiscountPercentage(quantity, container);
-    }
+    } else if (discountType === 'percentage') {
+        discountPercentage = Number(container.querySelector('.discountInput').value);
+    }   
 
 
     let inputIsValid = true;
@@ -62,7 +88,7 @@ function calculateDiscount(button) {
     if (!validatePrice(price, container)) {
         inputIsValid = false;
     }
-    if (!validateDiscountPercentage(discountPercentage, container)) {
+    if (!validateDiscountPercentage(discountPercentage, discountType, container)) {
         inputIsValid = false;
     }
     if (!validateQuantity(quantity, container)) {
