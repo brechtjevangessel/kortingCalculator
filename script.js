@@ -40,7 +40,7 @@ function validateDiscountPercentage(discountPercentage, discountType, container)
             container.querySelector('.discountPercentageError').innerHTML = 'Vul positief getal in.';
             console.log('Discount percentage not valid: negative number');
             return false;
-        } else if (!isInteger(freeItem) || !isInteger(payedItem)) {
+        } else if (!Number.isInteger(freeItem) || !Number.isInteger(payedItem)) {
             container.querySelector('.discountPercentageError').innerHTML = 'Vul een heel getal in.';
             console.log('Discount percentage not valid: not integer');
             return false;
