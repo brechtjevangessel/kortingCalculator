@@ -93,7 +93,7 @@ function changeDiscountInput(selector) {
 
     // changes input layout for discount type "percentage"
     if (discountType === 'percentage') {
-        container.querySelector('.discountandPriceContainer').innerHTML = `
+        container.querySelector('.discountAndPriceContainer').innerHTML = `
             <input type="text" class="discountInput" name="discountPercentage" placeholder="zonder %-teken">
             <div class="discountPercentageError"></div>
             <label for="price">Prijs:</label>
@@ -102,7 +102,7 @@ function changeDiscountInput(selector) {
         `;
     // changes layout for discount type "1plus1free"
     } else if (discountType === '1plus1free') {
-        container.querySelector('.discountContainer').innerHTML = `
+        container.querySelector('.discountAndPriceContainer').innerHTML = `
             <div class="onePlusOne">
                 <input type="number" class="onePlusOnePayedItem" value="1"> 
                 <div>+</div> 
@@ -113,7 +113,7 @@ function changeDiscountInput(selector) {
             <input type="text" class="priceInput" name="price" placeholder="gebruik een punt (.) i.p.v. comma">
             <div class="priceError"></div>
         `;
-    }  
+    }
 }
 
 function addShippingCostInput(selector) {
