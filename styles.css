@@ -23,7 +23,7 @@ input {
   color: red;
 }
 
-.discountContainer {
+.discountandPriceContainer {
   display: flex;
   flex-direction: column;
 }
