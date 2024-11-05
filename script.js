@@ -17,8 +17,13 @@ function validatePrice(price, container) {
 }
 
 function validateShippingCost(shippingCost, container) {
-    const userInput = container.querySelector('.shippingCostInput').value;
 
+    if (container.querySelector('.shippingCostInput') === null) {
+        return true;
+    }
+    
+    const userInput = container.querySelector('.shippingCostInput').value;
+    
     if (userInput.includes(",")) {
         container.querySelector('.shippingCostError').innerHTML = 'Vervang "." door ","';
         console.log('shipping cost not valid: comma notation');
@@ -97,10 +102,8 @@ function calculateDiscount(button) {
     
 
     if (container.querySelector('.shippingCostInput') !== null) {
-        shippingCost =container.querySelector('.shippingCostInput').value * 100;
+        shippingCost = container.querySelector('.shippingCostInput').value * 100;
     }
-
-    console.log(shippingCost);
 
 
     if (discountType === '1plus1free') {
@@ -108,9 +111,6 @@ function calculateDiscount(button) {
     } else if (discountType === 'percentage') {
         discountPercentage = Number(container.querySelector('.discountInput').value);
     }   
-
-    
-    
 
 
     let inputIsValid = true;
@@ -137,13 +137,12 @@ function calculateDiscount(button) {
 
     // all prices are in cents, unless variable name ends in "output"
     const oldPriceTotal = price * quantity;
+    const oldPriceTotalPlusShipping = oldPriceTotal + shippingCost;
     const moneySaved = oldPriceTotal * discountPercentage / 100;
-    const discountedPriceTotal = oldPriceTotal - moneySaved;
+    const discountedPriceTotal = oldPriceTotalPlusShipping - moneySaved;
     const discountedPricePerItem = discountedPriceTotal / quantity;
 
     //output variables
-
-
     const oldPriceTotalOutput = (oldPriceTotal / 100).toFixed(2);
     const moneySavedOutput = (moneySaved / 100).toFixed(2);
     const discountedPriceTotalOutput = (discountedPriceTotal / 100).toFixed(2);
