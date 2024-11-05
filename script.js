@@ -16,6 +16,29 @@ function validatePrice(price, container) {
     }
 }
 
+function validateShippingCost(shippingCost, container) {
+
+    if (container.querySelector('.shippingCostInput') === null) {
+        return true;
+    }
+    
+    const userInput = container.querySelector('.shippingCostInput').value;
+    
+    if (userInput.includes(",")) {
+        container.querySelector('.shippingCostError').innerHTML = 'Vervang "." door ","';
+        console.log('shipping cost not valid: comma notation');
+        return false;
+    } else if (shippingCost <= 0 || !Number.isInteger(shippingCost)) {
+        console.log('shipping cost not valid');
+        container.querySelector('.shippingCostError').innerHTML = 'Ongeldige verzendkosten';
+        return false;
+    } else {
+        container.querySelector('.shippingCostError').innerHTML = '';
+        console.log('shipping cost valid');
+        return true;
+    }
+}
+
 function validateDiscountPercentage(discountPercentage, discountType, container) {
 
 
@@ -75,6 +98,13 @@ function calculateDiscount(button) {
     const quantity = Number(container.querySelector('.quantityInput').value);
     let discountPercentage = 0;
     const discountType = container.querySelector('.discountType').value;
+    let shippingCost = 0;
+    
+
+    if (container.querySelector('.shippingCostInput') !== null) {
+        shippingCost = container.querySelector('.shippingCostInput').value * 100;
+    }
+
 
     if (discountType === '1plus1free') {
         discountPercentage = calculateOnePlusOneDiscountPercentage(quantity, container);
@@ -95,6 +125,10 @@ function calculateDiscount(button) {
         inputIsValid = false;
     }
 
+    if (!validateShippingCost(shippingCost, container)) {
+        inputIsValid = false;
+    }
+
     if (!inputIsValid) {
         return;
     }
@@ -103,13 +137,12 @@ function calculateDiscount(button) {
 
     // all prices are in cents, unless variable name ends in "output"
     const oldPriceTotal = price * quantity;
+    const oldPriceTotalPlusShipping = oldPriceTotal + shippingCost;
     const moneySaved = oldPriceTotal * discountPercentage / 100;
-    const discountedPriceTotal = oldPriceTotal - moneySaved;
+    const discountedPriceTotal = oldPriceTotalPlusShipping - moneySaved;
     const discountedPricePerItem = discountedPriceTotal / quantity;
 
     //output variables
-
-
     const oldPriceTotalOutput = (oldPriceTotal / 100).toFixed(2);
     const moneySavedOutput = (moneySaved / 100).toFixed(2);
     const discountedPriceTotalOutput = (discountedPriceTotal / 100).toFixed(2);
@@ -163,4 +196,18 @@ function calculateOnePlusOneDiscountPercentage(quantity, container) {
         actualFreeItems = ((quantity - restAmount) / (optimalAmount)) * freeItems;
       }
     return (actualFreeItems / quantity * 100);
+}
+
+function addShippingCostInput(selector) {
+    const container = selector.closest('.calculatorContainer');
+
+    const hasShippingCost = container.querySelector('.hasShippingCost').value;
+
+    if (hasShippingCost === 'yes') {
+        container.querySelector('.shippingInputContainer').innerHTML = '<input class="shippingCostInput" type="text">';
+    } else if (hasShippingCost === 'no') {
+        document.querySelector('.shippingInputContainer').innerHTML = '';
+        container.querySelector('.shippingCostError').innerHTML = '';
+    }
+
 }

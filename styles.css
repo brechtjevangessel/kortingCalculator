@@ -18,7 +18,7 @@ input {
   height: 400px;
 }
 
-.priceError, .discountPercentageError, .quantityError {
+.priceError, .discountPercentageError, .quantityError, .shippingCostError {
   height: 40px;
   color: red;
 }
@@ -36,4 +36,8 @@ input {
 
 .onePlusOneFreeItem, .onePlusOnePayedItem {
   width: 50px;
+}
+
+.shippingCostContainer {
+  height: 80px;
 }

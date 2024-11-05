@@ -12,7 +12,7 @@
       <div class="calculatorContainer">
         <label for="discountType">Korting:</label>
         <select class="discountType" name="discountType" onchange="changeDiscountInput(this)">
-          <option value="percentage">Percentage (%)</option>
+          <option value="percentage" selected="selected">Percentage (%)</option>
           <option value="1plus1free">... + ... gratis</option>
         </select>
         <div class="discountContainer">
@@ -25,6 +25,15 @@
         <label for="quantity">Aantal:</label>
         <input type="number" class="quantityInput" name="quantity" value="1">
         <div class="quantityError"></div>
+        <label for="hasShippingCost">Verzendkosten?</label>
+        <div class="shippingCostContainer">
+          <select name="hasShippingCost" class="hasShippingCost" onchange="addShippingCostInput(this)">
+            <option value="no"selected="selected">Nee</option>
+            <option value="yes">Ja</option>
+          </select>
+          <div class="shippingInputContainer"></div>
+          <div class="shippingCostError"></div>
+        </div>
         <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
         <div class="calculationMessage"></div>
       </div>
