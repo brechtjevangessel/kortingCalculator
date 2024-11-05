@@ -37,3 +37,7 @@ input {
 .onePlusOneFreeItem, .onePlusOnePayedItem {
   width: 50px;
 }
+
+.shippingCostContainer {
+  height: 60px;
+}

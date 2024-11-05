@@ -16,6 +16,23 @@ function validatePrice(price, container) {
     }
 }
 
+function validateShippingCost(shippingCost, container) {
+
+    if (userInput.includes(",")) {
+        container.querySelector('.shippingCostError').innerHTML = 'Vervang "." door ","';
+        console.log('shipping cost not valid: comma notation');
+        return false;
+    } else if (price <= 0 || !Number.isInteger(price)) {
+        console.log('shipping cost not valid');
+        container.querySelector('.shippingCostError').innerHTML = 'Ongeldige prijs';
+        return false;
+    } else {
+        container.querySelector('.shippingCostError').innerHTML = '';
+        console.log('shipping cost valid');
+        return true;
+    }
+}
+
 function validateDiscountPercentage(discountPercentage, discountType, container) {
 
 
@@ -76,11 +93,15 @@ function calculateDiscount(button) {
     let discountPercentage = 0;
     const discountType = container.querySelector('.discountType').value;
 
+
+
     if (discountType === '1plus1free') {
         discountPercentage = calculateOnePlusOneDiscountPercentage(quantity, container);
     } else if (discountType === 'percentage') {
         discountPercentage = Number(container.querySelector('.discountInput').value);
     }   
+
+    
 
 
     let inputIsValid = true;
@@ -92,6 +113,10 @@ function calculateDiscount(button) {
         inputIsValid = false;
     }
     if (!validateQuantity(quantity, container)) {
+        inputIsValid = false;
+    }
+
+    if (!validateShippingCost(shippingCost, container)) {
         inputIsValid = false;
     }
 
@@ -163,4 +188,18 @@ function calculateOnePlusOneDiscountPercentage(quantity, container) {
         actualFreeItems = ((quantity - restAmount) / (optimalAmount)) * freeItems;
       }
     return (actualFreeItems / quantity * 100);
+}
+
+function addShippingCostInput(selector) {
+    const container = selector.closest('.calculatorContainer');
+
+    const hasShippingCost = container.querySelector('.hasShippingCost').value;
+
+    if (hasShippingCost === 'yes') {
+        container.querySelector('.shippingInputContainer').innerHTML = '<input type="text">';
+        console.log(hasShippingCost)
+    } else if (hasShippingCost === 'no') {
+        document.querySelector('.shippingInputContainer').innerHTML = '';
+    }
+
 }
