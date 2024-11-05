@@ -7,24 +7,36 @@
     <title>Korting calculator</title>
 </head>
 <body>
+
   <h3>Korting Calculator</h3>
+
     <div class="mainContainer">
+
+      <!-- calculator can easlily be copy+pasted and still work. Copy everything in "calculatorContainer" -->
       <div class="calculatorContainer">
+        <!-- discount type selector -->
         <label for="discountType">Korting:</label>
         <select class="discountType" name="discountType" onchange="changeDiscountInput(this)">
           <option value="percentage" selected="selected">Percentage (%)</option>
           <option value="1plus1free">... + ... gratis</option>
         </select>
+        <!-- discount input -->
         <div class="discountContainer">
           <input type="text" class="discountInput" name="discountPercentage" placeholder="zonder %-teken">
         </div>
         <div class="discountPercentageError"></div>
+
+        <!-- price input -->
         <label for="price">Prijs:</label>
         <input type="text" class="priceInput" name="price" placeholder="gebruik een punt (.) i.p.v. comma">
         <div class="priceError"></div>
+
+        <!-- quantity input -->
         <label for="quantity">Aantal:</label>
         <input type="number" class="quantityInput" name="quantity" value="1">
         <div class="quantityError"></div>
+
+        <!-- shipping cost selector -->
         <label for="hasShippingCost">Verzendkosten?</label>
         <div class="shippingCostContainer">
           <select name="hasShippingCost" class="hasShippingCost" onchange="addShippingCostInput(this)">
@@ -34,14 +46,12 @@
           <div class="shippingInputContainer"></div>
           <div class="shippingCostError"></div>
         </div>
+        <!-- Calculation button (starts the calculation)-->
         <button class="calculationButton" onclick="calculateDiscount(this)">Reken uit!</button>
         <div class="calculationMessage"></div>
       </div>
-
     </div>
 
 </body>
-
-  <script src="script.js"></script>
-</body>
+<script src="script.js"></script>
 </html>
