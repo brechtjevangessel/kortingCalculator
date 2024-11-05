@@ -109,6 +109,24 @@ function changeDiscountInput(selector) {
     }  
 }
 
+function addShippingCostInput(selector) {
+    // makes sure that the function uses the input from the calculator the button is in
+    // this is only relevant if there is more than 1 calculator on screen
+    const container = selector.closest('.calculatorContainer');
+
+    // checks what option is selected
+    const hasShippingCost = container.querySelector('.hasShippingCost').value;
+
+    // changes layout based on selection
+    if (hasShippingCost === 'yes') {
+        container.querySelector('.shippingInputContainer').innerHTML = '<input class="shippingCostInput" type="text">';
+    } else if (hasShippingCost === 'no') {
+        document.querySelector('.shippingInputContainer').innerHTML = '';
+        container.querySelector('.shippingCostError').innerHTML = '';
+    }
+
+}
+
 // FUNCTIONS THAT CALCULATE ALTERNATE DISCOUNT PERCENTAGES
 
 function calculateOnePlusOneDiscountPercentage(quantity, container) {
