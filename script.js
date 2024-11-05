@@ -17,14 +17,15 @@ function validatePrice(price, container) {
 }
 
 function validateShippingCost(shippingCost, container) {
+    const userInput = container.querySelector('.shippingCostInput').value;
 
     if (userInput.includes(",")) {
         container.querySelector('.shippingCostError').innerHTML = 'Vervang "." door ","';
         console.log('shipping cost not valid: comma notation');
         return false;
-    } else if (price <= 0 || !Number.isInteger(price)) {
+    } else if (shippingCost <= 0 || !Number.isInteger(shippingCost)) {
         console.log('shipping cost not valid');
-        container.querySelector('.shippingCostError').innerHTML = 'Ongeldige prijs';
+        container.querySelector('.shippingCostError').innerHTML = 'Ongeldige verzendkosten';
         return false;
     } else {
         container.querySelector('.shippingCostError').innerHTML = '';
@@ -92,7 +93,14 @@ function calculateDiscount(button) {
     const quantity = Number(container.querySelector('.quantityInput').value);
     let discountPercentage = 0;
     const discountType = container.querySelector('.discountType').value;
+    let shippingCost = 0;
+    
 
+    if (container.querySelector('.shippingCostInput') !== null) {
+        shippingCost =container.querySelector('.shippingCostInput').value * 100;
+    }
+
+    console.log(shippingCost);
 
 
     if (discountType === '1plus1free') {
@@ -101,6 +109,7 @@ function calculateDiscount(button) {
         discountPercentage = Number(container.querySelector('.discountInput').value);
     }   
 
+    
     
 
 
@@ -196,10 +205,10 @@ function addShippingCostInput(selector) {
     const hasShippingCost = container.querySelector('.hasShippingCost').value;
 
     if (hasShippingCost === 'yes') {
-        container.querySelector('.shippingInputContainer').innerHTML = '<input type="text">';
-        console.log(hasShippingCost)
+        container.querySelector('.shippingInputContainer').innerHTML = '<input class="shippingCostInput" type="text">';
     } else if (hasShippingCost === 'no') {
         document.querySelector('.shippingInputContainer').innerHTML = '';
+        container.querySelector('.shippingCostError').innerHTML = '';
     }
 
 }
