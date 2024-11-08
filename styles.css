@@ -36,6 +36,7 @@ body {
 .mainContainer {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 h3 {
