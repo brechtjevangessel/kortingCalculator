@@ -1,43 +1,154 @@
-.mainContainer {
-  display: flex;
+
+
+:root {
+  /* catppuccin latte colors */
+  --crust: #dce0e8;
+  --mantle: #e6e9ef;
+  --base: #eff1f5;
+  --surface0: #ccd0da;
+  --surface1: #bcc0cc;
+  --overlay0: #9ca0b0;
+  --text: #4c4f69;
+  --subtext0: #6c6f85;
+  --green: #40a02b;
+  --red: #d20f39;
+
+  /* Extra colors */
+  --dark-green: #378A25;
+  --darker-green: #2E731F;
 }
 
-input {
-  margin-top: 5px;
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'roboto', sans-serif;
+  font-size: 15px;
+}
+
+body {
+  background-color: var(--base);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  color: var(--green);
+  margin: 20px;
+  
 }
 
 .calculatorContainer {
-  border: 1px black;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--mantle);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 300px;
-  display: flex;
-  flex-direction: column;
-  border: solid;
-  border-width: 1px;
-  margin: 10px;
-  padding: 10px;
-  height: 400px;
+  margin-left: 20px;
 }
 
-.priceError, .discountPercentageError, .quantityError, .shippingCostError {
-  height: 40px;
-  color: red;
+label {
+  font-weight: bold;
+  color: var(--subtext0);
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
-.discountContainer {
-  display: flex;
-  flex-direction: column;
+input, select {
+  background-color: var(--surface0);
+  color: var(--text);
+  border: 2px solid var(--surface1);
+  padding: 5px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.discountInput {
+  margin-top: 5px;
+}
+
+
+.discountType {
+  background-color: var(--green);
+  color: var(--crust);
+  border: 2px solid var(--dark-green);
 }
 
 .onePlusOne {
   display: flex;
   align-items: baseline;
-
+  margin: 5px;
 }
 
-.onePlusOneFreeItem, .onePlusOnePayedItem {
-  width: 50px;
+.onePlusOne div {
+  margin-right: 7px;
+}
+
+.onePlusOnePayedItem,
+.onePlusOneFreeItem {
+  width: 60px;
+  margin-right: 7px;
+}
+
+
+.discountPercentageError,
+.priceError,
+.quantityError,
+.shippingCostError {
+  color: var(--red);
+  height: 500x;
+  padding-top: 5px;
 }
 
 .shippingCostContainer {
-  height: 80px;
+  display: flex;
 }
+
+.hasShippingCost {
+  width: 60px;
+  margin-right: 5px;
+}
+
+.calculationButton {
+  background-color: var(--green);
+  color: var(--crust);
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.calculationButton:hover {
+  background-color: var(--dark-green);
+}
+
+.calculationButton:active {
+  background-color: var(--darker-green);
+}
+
+.calculationMessage {
+  margin-top: 15px;
+  color: var(--text);
+}
+
+s {
+  color: var(--overlay0);
+}
+
+em {
+  color: var(--green);
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+

@@ -76,9 +76,9 @@ function calculateDiscount(button) {
 
     // print output
     container.querySelector('.calculationMessage').innerHTML= `
-        Totale prijs: <s>€${oldPriceTotalOutput}</s> €${discountedPriceTotalOutput} <br> 
-        Prijs per stuk: <s>€${priceOutput}</s> €${discountedPricePerItemOutput} <br><br>
-        Je bespaart: €${moneySavedOutput}`;
+        Totale prijs: <s>€${oldPriceTotalOutput}</s> <em>€${discountedPriceTotalOutput}</em> <br> 
+        Prijs per stuk: <s>€${priceOutput}</s> <em>€${discountedPricePerItemOutput}</em> <br><br>
+        Je bespaart: <em>€${moneySavedOutput}</em>`;
 }
 
 // FUNCTIONS THAT CHANGE THE LAYOUT OF THE CALCULATOR
@@ -119,7 +119,7 @@ function addShippingCostInput(selector) {
 
     // changes layout based on selection
     if (hasShippingCost === 'yes') {
-        container.querySelector('.shippingInputContainer').innerHTML = '<input class="shippingCostInput" type="text">';
+        container.querySelector('.shippingInputContainer').innerHTML = '<input class="shippingCostInput" type="text" placeholder="punt i.p.v. comma">';
     } else if (hasShippingCost === 'no') {
         document.querySelector('.shippingInputContainer').innerHTML = '';
         container.querySelector('.shippingCostError').innerHTML = '';
@@ -213,7 +213,7 @@ function validateDiscountPercentage(discountPercentage, discountType, container)
             return false;
         // checks that the discount percentage is not more than 100
         } else if (discountPercentage > 100) {
-            container.querySelector('.discountPercentageError').innerHTML = 'Kortingspercentage kan niet hoger zijn dan 100%';
+            container.querySelector('.discountPercentageError').innerHTML = 'Ongeldig percentage: hoger dan 100%';
             console.log('Discount percentage not valid: >100');
             return false;
         } else {
@@ -252,7 +252,7 @@ function validateQuantity(quantity, container) {
 
     // checks that the number is an positive integer
     if (!Number.isInteger(quantity) || quantity <= 0) {
-        container.querySelector('.quantityError').innerHTML = 'Ongeldig aantal: gebruik een positief heel getal';
+        container.querySelector('.quantityError').innerHTML = 'Ongeldig aantal';
         console.log('Quantity not valid');
         return false;
     } else {
